@@ -20,10 +20,13 @@ app.get("/",async(req,res)=>{
     return res.status(200).send({message:`Hello, this is the base endpoint!`})
 })
 
+app.listen(process.env.port,async()=>{
+    try {
+        await connection
+        console.log("DB Connected")
+    } catch (error) {
+        console.log(error.message)
+    }
 
-app.listen(6300,()=>{
-
-    mongoose.connect("mongodb+srv://abhishek:abhishek@cluster0.czs9tbb.mongodb.net/masaiLibreary?retryWrites=true&w=majority")
-    console.log("server is running at the post")
-
+    console.log(`server is running on port ${process.env.port}`)
 })
